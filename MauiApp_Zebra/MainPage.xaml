@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiApp_Zebra.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Button Clicked="Button_Clicked" Text="Start Discovery" />
+
+
+
+            <Label x:Name="statusLbl" TextColor="Red" />
+            <RefreshView
+                x:Name="PrinterListRefresh"
+                RefreshColor="Orange"
+                Refreshing="RefreshView_Refreshing">
+
+                <ListView
+                    x:Name="printerLv"
+                    Margin="10"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    ItemTapped="printerLv_ItemTapped"
+                    SeparatorVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="30,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Grid.Row="0" Orientation="Horizontal">
+                                        <Image
+                                            Grid.Column="0"
+                                            BackgroundColor="White"
+                                            HeightRequest="20"
+                                            Opacity=".5"
+                                            Source="ic_bluetooth.png"
+                                            WidthRequest="20" />
+                                        <Label
+                                            x:Name="addressLbl"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="1"
+                                            TextColor="White">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="Address" />
+                                                    <Binding Path="FriendlyName" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+
+
+
+                                    </StackLayout>
+
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </RefreshView>
+
+            <Button
+                x:Name="CounterBtn"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                Text="Print" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
