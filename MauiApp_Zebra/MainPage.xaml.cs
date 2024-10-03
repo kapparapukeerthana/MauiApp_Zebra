@@ -309,6 +309,7 @@ namespace MauiApp_Zebra
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await StartZebraPrinterDiscovery();
+            printerLv.ItemsSource = printerList;
         }
 
 
